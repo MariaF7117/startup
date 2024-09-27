@@ -43,3 +43,7 @@ I am going to use the required technologies in the following ways.
   - retrieving adjusted individual totals for: food, rent, savings, tithing, and spending
 - **DB/Login** - Store users, their sources of income and spending, and goals in the database. Register and login users. User's credentials are securely stored in database. Cannot view website unless authenticated.
 - **WebSocket** - The websocket will communicate between a currency converter API that I will call from in order to communicate and be useful for other countries and currencies.
+
+## Implementation HTML
+  Implementation of HTML in my webpage is:
+  - index.html: which is the home page. Contains Pi Chart that interacts with user's inputs at the bottom. Displays user's name.
