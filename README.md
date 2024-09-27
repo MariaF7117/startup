@@ -45,5 +45,10 @@ I am going to use the required technologies in the following ways.
 - **WebSocket** - The websocket will communicate between a currency converter API that I will call from in order to communicate and be useful for other countries and currencies.
 
 ## Implementation HTML
-  Implementation of HTML in my webpage is:
-  - index.html: which is the home page. Contains Pi Chart that interacts with user's inputs at the bottom. Displays user's name.
+The HTML structure of my webpage consists of the following key components:
+- index.html: This serves as the homepage. It features an interactive pie chart that responds to user inputs at the bottom of the page and displays the user's name. Additionally, it includes a link to my personal GitHub profile.
+- transactions.html: This page contains fields for entering income and expenditure. It includes a function to calculate the net total, which is displayed at the bottom of the page.
+- login.html: This page provides fields for username and password input, along with a login button. There is also a link directing users to the registration page.
+- register.html: This page includes fields for entering a username, email address, and password. It features a button to register a new user and provides a link back to the login page.
+
+
