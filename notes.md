@@ -23,3 +23,5 @@ We resolve the conflict by modifying the file to remove the textual conflict del
 ➜  git push
 ```
 These notes are taken from the gitHub.md assignment which full documentation can be found here [GitHub Assignemnt](https://github.com/webprogramming260/.github/blob/main/profile/essentials/gitHub/gitHub.md)
+
+### CSS
