@@ -52,3 +52,9 @@ The HTML structure of my webpage consists of the following key components:
 - register.html: This page includes fields for entering a username, email address, and password. It features a button to register a new user and provides a link back to the login page.
 
 
+## Implementation of CSS
+The CSS design of my webpage consists of the following key components:
+- Responsive Element Sizing: Elements on the page adapt dynamically for optimal display.
+- Adaptive Header and Footer: The header and footer adjust seamlessly to enhance user experience.
+- Personal Branding: Your name is prominently featured within the application, alongside a direct link to your GitHub repository.
+- Unified Color Palette: A cohesive color scheme is consistently applied throughout the web app for a harmonious aesthetic.
