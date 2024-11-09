@@ -23,7 +23,12 @@ function loadEditAppointment() {
     let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
     const editIndex = localStorage.getItem('editIndex');
   
-
+    if (editIndex !== null) {
+      appointments[editIndex] = newAppointment;
+      localStorage.removeItem('editIndex');
+    } else {
+      appointments.push(newAppointment);
+    }
   
     localStorage.setItem('appointments', JSON.stringify(appointments));
     alert('Appointment saved!');
