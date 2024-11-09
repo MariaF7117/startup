@@ -13,3 +13,22 @@ function loadEditAppointment() {
     }
   }
   
+  function saveAppointment() {
+    const name = document.getElementById('name').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const details = document.getElementById('details').value;
+    const newAppointment = { name, date, time, details };
+    
+    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    const editIndex = localStorage.getItem('editIndex');
+  
+
+  
+    localStorage.setItem('appointments', JSON.stringify(appointments));
+    alert('Appointment saved!');
+    window.location.href = 'index.html';
+  }
+  
+  window.onload = loadEditAppointment;
+  
