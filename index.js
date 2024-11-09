@@ -20,6 +20,12 @@ function loadAppointments() {
     window.location.href = 'schedule.html';
   }
   
-
+  function cancelAppointment(index) {
+    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    appointments.splice(index, 1);
+    localStorage.setItem('appointments', JSON.stringify(appointments));
+    loadAppointments();
+  }
+  
   window.onload = loadAppointments;
   
