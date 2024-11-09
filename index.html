@@ -10,6 +10,10 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-image: url('images/koi2.jpg');
+        background-size: cover;        
+        background-repeat: no-repeat;     
+        background-position: center;   
         }
         footer {
             background-color: #333;
@@ -99,8 +103,8 @@
 <body>
     <main>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="transaction.html">Transactions</a>
+        <a href="index.html">Koi Orthodontics</a>
+        <a href="schedule.html">Schedule Appointment</a>
         <a href="https://github.com/MariaF7117/startup">Github</a>
         <a href="login.html">Logout</a>
 
@@ -108,34 +112,45 @@
 
     <div class="content">
         <h1>Welcome to your home page Maria Feist</h1>
-        <p id="welcome-message"></p>
-
-        <div id="chartContainer">
-            <canvas id="myPieChart"></canvas>
-            <img src="images/pichart.jpg">
-        </div>
-
-        <h2>Input Your Expenses</h2>
-        <form id="expenseForm">
-            <label for="savings">Savings:</label>
-            <input type="number" id="savings" name="savings" value="0" required>
-
-            <label for="rent">Rent:</label>
-            <input type="number" id="rent" name="rent" value="0" required>
-
-            <label for="tithing">Tithing (10%):</label>
-            <input type="number" id="tithing" name="tithing" value="0" required>
-
-            <label for="groceries">Groceries:</label>
-            <input type="number" id="groceries" name="groceries" value="0" required>
-
-            <label for="spending">Spending:</label>
-            <input type="number" id="spending" name="spending" value="0" required>
-
-            <button type="submit">Update Chart</button>
-        </form>
+    
     </div>
-
+    <div class="container">
+        <h1>Appointment Scheduler</h1>
+        
+        <div class="nav">
+          <button onclick="showSection('schedule')">Schedule Appointment</button>
+          <button onclick="showSection('view')">Your Appointments</button>
+        </div>
+    
+        <!-- Schedule Appointment Form -->
+        <div id="schedule" class="section">
+          <h2>Schedule an Appointment</h2>
+          <form id="appointmentForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+    
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+    
+            <label for="time">Time:</label>
+            <input type="time" id="time" required>
+    
+            <label for="details">Details:</label>
+            <textarea id="details" required></textarea>
+    
+            <button type="button" onclick="scheduleAppointment()">Submit</button>
+          </form>
+        </div>
+    
+        <!-- View Appointments Section -->
+        <div id="view" class="section">
+          <h2>Your Appointments</h2>
+          <ul id="appointmentsList"></ul>
+        </div>
+      </div>
+    
+      <script src="script.js"></script>
+    
 </main>
 </body>
 <footer>

@@ -87,28 +87,32 @@
 <body>
     <main>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="transaction.html">Transactions</a>
+        <a href="index.html">Koi Orthodontics</a>
+        <a href="schedule.html">Schedule Appointment</a>
+        
         <a href="https://github.com/MariaF7117/startup">Github</a>
         <a href="login.html">Logout</a>
 
     </nav>
-
-    <div class="content">
-        <h1>Transaction Page</h1>
-
-        <h2>Income</h2>
-        <label for="income">Enter Income:</label>
-        <input type="number" id="income" name="income" value="0" required>
-
-        <h2>Spending</h2>
-        <label for="spending">Enter Spending:</label>
-        <input type="number" id="spending" name="spending" value="0" required>
-
-        <button id="calculate">Calculate Net Total</button>
-
-        <div class="net-total" id="netTotal">Net Total: $0</div>
-    </div>
+    <div class="container">
+        <h1>Schedule an Appointment</h1>
+        <form id="appointmentForm">
+          <label for="name">Name:</label>
+          <input type="text" id="name" required>
+    
+          <label for="date">Date:</label>
+          <input type="date" id="date" required>
+    
+          <label for="time">Time:</label>
+          <input type="time" id="time" required>
+    
+          <label for="details">Details:</label>
+          <textarea id="details" required></textarea>
+    
+          <button type="button" onclick="saveAppointment()">Save Appointment</button>
+          <button type="button" onclick="window.location.href='index.html'">Back to Appointments</button>
+        </form>
+      </div>
 </main>
 </body>
 <footer>
