@@ -15,3 +15,11 @@ function loadAppointments() {
     });
   }
   
+  function editAppointment(index) {
+    localStorage.setItem('editIndex', index);
+    window.location.href = 'schedule.html';
+  }
+  
+
+  window.onload = loadAppointments;
+  
