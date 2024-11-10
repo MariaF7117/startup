@@ -32,7 +32,7 @@ function loadEditAppointment() {
   
     localStorage.setItem('appointments', JSON.stringify(appointments));
     alert('Appointment saved!');
-    window.location.href = 'index.html';
+    window.location.href = '../index.html';
   }
   
   window.onload = loadEditAppointment;
