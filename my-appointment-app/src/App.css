@@ -1,42 +1,80 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('images/koi2.jpg');
+background-size: cover;        
+background-repeat: no-repeat;     
+background-position: center;   
+}
+footer {
+  background-color: #333;
+  color: white;
+  padding: 1em;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+footer a {
+  color: white;
+  text-decoration: none;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+nav {
+  background-color: #333;
+  color: white;
+  padding: 1em;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav a:hover {
+  text-decoration: underline;
+}
+.content {
+  padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h2 {
+text-align: center;
+color: #333;
 }
 
-.card {
-  padding: 2em;
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+}
+ul {
+  list-style: none;
+  padding: 0;
 }
 
-.read-the-docs {
-  color: #888;
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label, input, textarea {
+  font-size: 16px;
+  padding: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #357abd;
 }
