@@ -1,9 +1,9 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
-import Schedule from './components/Schedule';
+import Login from './login/login';
+import Register from './register/register';
+import Schedule from './schedule/schedule';
 import AppointmentList from './components/AppointmentList';
 
 function App() {
