@@ -6,6 +6,7 @@ import {Routes} from 'react-router-dom'
 import Login from './login/login.jsx'
 import Schedule from './schedule/schedule.jsx';
 import Register from './register/register.jsx'
+import About from './about/about.jsx';
 import AppointmentList from './appointmentList/appointmentList.jsx'
 import './App.css';
 
@@ -43,6 +44,7 @@ const Home = () => {
         <NavLink to="/">Login</NavLink> | 
         <NavLink to="/schedule">Schedule Appointment</NavLink> | 
         <NavLink to="/appointmentList">Appointments</NavLink> | 
+        <NavLink to="/about">About</NavLink> |
         <NavLink to="/register">Register</NavLink>
       </nav>
       
@@ -50,6 +52,7 @@ const Home = () => {
         <Route path="/" element={<Login />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/appointmentList" element={<AppointmentList />} />
+        <Route path='/about' element={<About />} />
         <Route path="/register" element={<Register />} />
       </Routes>
 
