@@ -33,3 +33,4 @@ export function About(props) {
     </main>
   );
 }
+export default About;

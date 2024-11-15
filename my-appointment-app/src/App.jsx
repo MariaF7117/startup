@@ -4,7 +4,6 @@ import Login from './login/login.jsx'
 import Schedule from './schedule/schedule.jsx';
 import Register from './register/register.jsx'
 import About from './about/about.jsx';
-import { AuthState } from './login/authState';
 import AppointmentList from './appointmentList/appointmentList.jsx'
 import './App.css';
 
@@ -34,11 +33,6 @@ const Home = () => {
     updatedAppointments.splice(index, 1);
     updateAppointments(updatedAppointments);
   };
-  
-  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
-  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
-  const [authState, setAuthState] = React.useState(currentAuthState);
-
 
   return (
     <BrowserRouter>
@@ -58,31 +52,6 @@ const Home = () => {
         <Route path='/about' element={<About />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-
-      {/* <div className="content">
-        <h1>Welcome to your home page Maria Feist</h1>
-      </div> */}
-
-      {/* { <div className="container">
-        <h1>Your Appointments</h1>
-        <button onClick={() => navigate('/schedule')}>Schedule Appointment</button>
-        <ul id="appointmentsList">
-          {appointments.length === 0 ? (
-            <li>No appointments scheduled</li>
-          ) : (
-            appointments.map((appt, index) => (
-              <li key={index}>
-                <strong>{appt.name}</strong> - {appt.date} at {appt.time}
-                <br />
-                <em>{appt.details}</em>
-                <br />
-                <button onClick={() => editAppointment(index)}>Edit</button>
-                <button onClick={() => cancelAppointment(index)}>Cancel</button>
-              </li>
-            ))
-          )}
-        </ul>
-      </div> } */}
 
       <footer>
         <a href="https://github.com/MariaF7117/startup" target="_blank" rel="noopener noreferrer">
