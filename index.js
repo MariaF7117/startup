@@ -17,7 +17,7 @@ function loadAppointments() {
   
   function editAppointment(index) {
     localStorage.setItem('editIndex', index);
-    window.location.href = 'schedule.html';
+    window.location.href = 'schedule/schedule.html';
   }
   
   function cancelAppointment(index) {
