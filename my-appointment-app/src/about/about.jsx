@@ -16,7 +16,7 @@ export function About(props) {
 
         const width = containerEl.offsetWidth;
         const height = containerEl.offsetHeight;
-        const apiUrl = `https://dog.ceo/api/breeds/image/random${data[0].id}/${width}/${height}?grayscale`;
+        const apiUrl = `hhttps://dog.ceo/api/breed/affenpinscher/images/random${data[0].id}/${width}/${height}?grayscale`;
         setImageUrl(apiUrl);
       })
       .catch();
