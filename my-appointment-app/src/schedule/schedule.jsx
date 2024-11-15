@@ -38,7 +38,7 @@ export const Schedule = () => {
 
     localStorage.setItem('appointments', JSON.stringify(appointments));
     alert('Appointment saved!');
-    navigate('/'); // Replace with your dashboard or appointments page route
+    navigate('/appointmentList/'); // Replace with your dashboard or appointments page route
   };
 
   return (

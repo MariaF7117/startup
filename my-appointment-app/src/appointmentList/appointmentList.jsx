@@ -4,7 +4,7 @@ import '../App.css';
 
 export const AppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Load appointments from localStorage on component mount
   useEffect(() => {
@@ -20,7 +20,7 @@ export const AppointmentList = () => {
 
   const editAppointment = (index) => {
     localStorage.setItem('editIndex', index);
- //   navigate('/schedule'); // Redirect to the schedule page for editing
+    navigate('/schedule');
   };
 
   const cancelAppointment = (index) => {
