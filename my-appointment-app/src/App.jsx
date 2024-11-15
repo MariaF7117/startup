@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { useState , useEffect} from 'react';
 import Login from './login/login.jsx'
 import Schedule from './schedule/schedule.jsx';
 import Register from './register/register.jsx'
@@ -9,7 +10,7 @@ import './App.css';
 
 const Home = () => {
   const [appointments, setAppointments] = useState([]);
-  const navigate = useNavigate();
+ // const navigate = useNavigate();
 
   // Load appointments from localStorage on component mount
   useEffect(() => {
