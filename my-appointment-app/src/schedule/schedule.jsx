@@ -85,7 +85,7 @@ export const Schedule = () => {
           <button type="button" onClick={saveAppointment}>
             Save Appointment
           </button>
-          <button type="button" onClick={() => navigate('/')}>
+          <button type="button" onClick={() => navigate('/appointmentList')}>
             Back to Appointments
           </button>
         </form>
