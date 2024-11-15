@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter, useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
-import { Route } from 'react-router-dom';
-import {Routes} from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import Login from './login/login.jsx'
 import Schedule from './schedule/schedule.jsx';
 import Register from './register/register.jsx'
 import About from './about/about.jsx';
+import { AuthState } from './login/authState';
 import AppointmentList from './appointmentList/appointmentList.jsx'
 import './App.css';
 
 const Home = () => {
   const [appointments, setAppointments] = useState([]);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Load appointments from localStorage on component mount
   useEffect(() => {
@@ -28,7 +26,7 @@ const Home = () => {
 
   const editAppointment = (index) => {
     localStorage.setItem('editIndex', index);
- //   navigate('/schedule'); // Redirect to the schedule page for editing
+    navigate('/schedule'); // Redirect to the schedule page for editing
   };
 
   const cancelAppointment = (index) => {
@@ -36,6 +34,11 @@ const Home = () => {
     updatedAppointments.splice(index, 1);
     updateAppointments(updatedAppointments);
   };
+  
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
 
   return (
     <BrowserRouter>
