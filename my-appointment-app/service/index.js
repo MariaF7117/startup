@@ -3,9 +3,9 @@ const uuid = require('uuid');
 const { default: AppointmentList } = require('../src/appointmentList/appointmentList');
 const app = express();
 
-// The scores and users are saved in memory and disappear whenever the service is restarted.
+// TheSchedule and users are saved in memory and disappear whenever the service is restarted.
 let users = {};
-let scores = [];
+letSchedule = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -74,6 +74,29 @@ appRouter.get('appointmentList', (_req,res) => {
     res.send(AppointmentList)
 });
 
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+// updatSchedule considers a new score for inclusion in the highSchedule.
+function updateSchedule(newSchedule,schedule) {
+  let found = false;
+  for (const [i, prevSchedule] of schedule.entries()) {
+    if (newSchedule.schedule > prevSchedule.schedule) {
+    schedule.splice(i, 0, newSchedule);
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) {
+  schedule.push(newSchedule);
+  }
+
+  if (schedule.length > 10) {
+  schedule.length = 10;
+  }
+
+  return schedule;
+};
