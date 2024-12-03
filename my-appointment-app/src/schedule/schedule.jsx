@@ -24,48 +24,48 @@ export const Schedule = () => {
     }
   }, []);
 
-  // const saveAppointment = () => {
-  //   const newAppointment = { name, date, time, details };
-  //   let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-  //   const editIndex = localStorage.getItem('editIndex');
+  const saveAppointment = () => {
+    const newAppointment = { name, date, time, details };
+    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    const editIndex = localStorage.getItem('editIndex');
 
-  //   if (editIndex !== null) {
-  //     appointments[editIndex] = newAppointment;
-  //     localStorage.removeItem('editIndex');
-  //   } else {
-  //     appointments.push(newAppointment);
-  //   }
-
-  //   localStorage.setItem('appointments', JSON.stringify(appointments));
-  //   alert('Appointment saved!');
-  //   navigate('/appointmentList/'); // Replace with your dashboard or appointments page route
-  // };
-
-// Save appointment using the /api/schedule endpoint
-const saveAppointment = async () => {
-  const newAppointment = { name, date, time, details };
-
-  try {
-    const response = await fetch('/api/schedule', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newAppointment),
-    });
-
-    if (response.ok) {
-      const schedule = await response.json();
-      alert('Appointment saved!');
-      console.log('Updated schedule:', schedule);
-      navigate('../appointmentList');
+    if (editIndex !== null) {
+      appointments[editIndex] = newAppointment;
+      localStorage.removeItem('editIndex');
     } else {
-      console.error('Failed to save appointment');
-      alert('Failed to save appointment.');
+      appointments.push(newAppointment);
     }
-  } catch (error) {
-    console.error('Error saving appointment:', error);
-    alert('Error saving appointment.');
-  }
-};
+
+    localStorage.setItem('appointments', JSON.stringify(appointments));
+    alert('Appointment saved!');
+    navigate('/appointmentList/'); // Replace with your dashboard or appointments page route
+  };
+
+//Save appointment using the /api/schedule endpoint
+// const saveAppointment = async () => {
+//   const newAppointment = { name, date, time, details };
+
+//   try {
+//     const response = await fetch('/api/schedule', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(newAppointment),
+//     });
+
+//     if (response.ok) {
+//       const schedule = await response.json();
+//       alert('Appointment saved!');
+//       console.log('Updated schedule:', schedule);
+//       navigate('../appointmentList');
+//     } else {
+//       console.error('Failed to save appointment');
+//       alert('Failed to save appointment.');
+//     }
+//   } catch (error) {
+//     console.error('Error saving appointment:', error);
+//     alert('Error saving appointment.');
+//   }
+// };
 
 return (
   <main>

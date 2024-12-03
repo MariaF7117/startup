@@ -72,7 +72,7 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-appRouter.get('appointmentList', (_req,res) => {
+appRouter.get('/appointmentList', (_req,res) => {
     res.send(AppointmentList)
 });
 
@@ -82,23 +82,27 @@ app.listen(port, () => {
 });
 
 // updatSchedule considers a new score for inclusion in the highSchedule.
-function updateSchedule(newSchedule,schedule) {
-  let found = false;
-  for (const [i, prevSchedule] of schedule.entries()) {
-    if (newSchedule.schedule > prevSchedule.schedule) {
-    schedule.splice(i, 0, newSchedule);
-      found = true;
-      break;
-    }
-  }
+// function updateSchedule(newSchedule,schedule) {
+//   let found = false;
+//   for (const [i, prevSchedule] of schedule.entries()) {
+//     if (newSchedule.schedule > prevSchedule.schedule) {
+//     schedule.splice(i, 0, newSchedule);
+//       found = true;
+//       break;
+//     }
+//   }
 
-  if (!found) {
+//   if (!found) {
+//   schedule.push(newSchedule);
+//   }
+
+//   if (schedule.length > 10) {
+//   schedule.length = 10;
+//   }
+
+//   return schedule;
+// };
+function updateSchedule(newSchedule, schedule) {
   schedule.push(newSchedule);
-  }
-
-  if (schedule.length > 10) {
-  schedule.length = 10;
-  }
-
   return schedule;
-};
+}
