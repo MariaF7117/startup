@@ -24,21 +24,45 @@ export const Schedule = () => {
     }
   }, []);
 
-  const saveAppointment = () => {
+  // const saveAppointment = () => {
+  //   const newAppointment = { name, date, time, details };
+  //   let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+  //   const editIndex = localStorage.getItem('editIndex');
+
+  //   if (editIndex !== null) {
+  //     appointments[editIndex] = newAppointment;
+  //     localStorage.removeItem('editIndex');
+  //   } else {
+  //     appointments.push(newAppointment);
+  //   }
+
+  //   localStorage.setItem('appointments', JSON.stringify(appointments));
+  //   alert('Appointment saved!');
+  //   navigate('/appointmentList/'); // Replace with your dashboard or appointments page route
+  // };
+
+  const saveAppointment = async () => {
     const newAppointment = { name, date, time, details };
-    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-    const editIndex = localStorage.getItem('editIndex');
-
-    if (editIndex !== null) {
-      appointments[editIndex] = newAppointment;
-      localStorage.removeItem('editIndex');
-    } else {
-      appointments.push(newAppointment);
+  
+    try {
+      const response = await fetch('/api/schedule', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newAppointment),
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        alert('Appointment saved successfully!');
+        console.log('Updated schedule:', result.schedule);
+        navigate('/appointmentList');
+      } else {
+        alert('Failed to save appointment.');
+      }
+    } catch (error) {
+      console.error('Error saving appointment:', error);
+      alert('An error occurred while saving the appointment.');
     }
-
-    localStorage.setItem('appointments', JSON.stringify(appointments));
-    alert('Appointment saved!');
-    navigate('/appointmentList/'); // Replace with your dashboard or appointments page route
   };
 
 //Save appointment using the /api/schedule endpoint
