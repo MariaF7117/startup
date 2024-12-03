@@ -5,7 +5,7 @@ const app = express();
 
 // TheSchedule and users are saved in memory and disappear whenever the service is restarted.
 let users = {};
-letSchedule = [];
+let schedule = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
