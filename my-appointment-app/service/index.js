@@ -59,11 +59,13 @@ apiRouter.get('/register', (_req, res) => {
   res.send(register);
 });
 
-// scheduleAppointment
+//schedule appointment
 apiRouter.post('/schedule', (req, res) => {
-  schedule = updateSchedule(req.body, schedule);
-  res.send(schedule);
+  const newSchedule = req.body;
+  schedule = updateSchedule(newSchedule, schedule);
+  res.status(200).json({ message: 'Schedule updated successfully', schedule });
 });
+
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
