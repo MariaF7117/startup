@@ -1,32 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import {useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
 export const AppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
   const navigate = useNavigate();
 
-  // Load appointments from localStorage on component mount
+  // Fetch appointments from the backend
   useEffect(() => {
-    const savedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
-    setAppointments(savedAppointments);
+    const fetchAppointments = async () => {
+      try {
+        const response = await fetch('/api/appointmentList');
+        if (response.ok) {
+          const data = await response.json();
+          setAppointments(data);
+        } else {
+          console.error('Failed to fetch appointments');
+        }
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+
+    fetchAppointments();
   }, []);
 
-  // Save updated appointments to localStorage
-  const updateAppointments = (updatedAppointments) => {
-    setAppointments(updatedAppointments);
-    localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+  // Cancel an appointment by index
+  const cancelAppointment = async (index) => {
+    try {
+      const response = await fetch(`/api/schedule/${index}`, { method: 'DELETE' });
+      if (response.ok) {
+        const updatedAppointments = [...appointments];
+        updatedAppointments.splice(index, 1);
+        setAppointments(updatedAppointments);
+      } else {
+        alert('Failed to cancel the appointment.');
+      }
+    } catch (error) {
+      console.error('Error canceling appointment:', error);
+    }
   };
 
   const editAppointment = (index) => {
     localStorage.setItem('editIndex', index);
     navigate('/schedule');
-  };
-
-  const cancelAppointment = (index) => {
-    const updatedAppointments = [...appointments];
-    updatedAppointments.splice(index, 1);
-    updateAppointments(updatedAppointments);
   };
 
   return (
