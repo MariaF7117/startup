@@ -1,6 +1,6 @@
 const express = require('express');
 const uuid = require('uuid');
-const { default: AppointmentList } = require('../src/appointmentList/appointmentList');
+//const { default: AppointmentList } = require('../src/appointmentList/appointmentList');
 const app = express();
 
 // TheSchedule and users are saved in memory and disappear whenever the service is restarted.
@@ -18,6 +18,7 @@ app.use(express.static('public'));
 // Router for service endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
@@ -62,47 +63,49 @@ apiRouter.get('/register', (_req, res) => {
 //schedule appointment
 apiRouter.post('/schedule', (req, res) => {
   const newSchedule = req.body;
+  
   schedule = updateSchedule(newSchedule, schedule);
   res.status(200).json({ message: 'Schedule updated successfully', schedule });
 });
 
+function updateSchedule(newSchedule,schedule){
+  let found = false;
+  for (const [i, prevSchedule] of schedule.entries()) {
+    if (newSchedule.schedule > prevSchedule.schedule) {
+      schedule.splice(i, 0, newSchedule);
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) {
+    schedule.push(newSchedule);
+  }
+
+  if (schedule.length > 10) {
+    schedule.length = 10;
+  }
+
+  return schedule;
+
+};
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-appRouter.get('/appointmentList', (_req,res) => {
-    res.send(AppointmentList)
+apiRouter.get('/schedule', (_req,res) => {
+    res.send(schedule)
 });
 
+apiRouter.delete('/schedule/:indexId', (req,res) => {
+  const indexId = req.params.indexId;
+  schedule.splice(indexId,1);
+  res.send(schedule)
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-// updatSchedule considers a new score for inclusion in the highSchedule.
-// function updateSchedule(newSchedule,schedule) {
-//   let found = false;
-//   for (const [i, prevSchedule] of schedule.entries()) {
-//     if (newSchedule.schedule > prevSchedule.schedule) {
-//     schedule.splice(i, 0, newSchedule);
-//       found = true;
-//       break;
-//     }
-//   }
-
-//   if (!found) {
-//   schedule.push(newSchedule);
-//   }
-
-//   if (schedule.length > 10) {
-//   schedule.length = 10;
-//   }
-
-//   return schedule;
-// };
-function updateSchedule(newSchedule, schedule) {
-  schedule.push(newSchedule);
-  return schedule;
-}

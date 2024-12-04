@@ -97,3 +97,5 @@ These notes are taken from the gitHub.md assignment which full documentation can
     }
   }
 ```
+## Service
+This deliverable demonstrates converting the JavaScript application into a web application by implementing a web service that listens on a network port for HTTP requests.

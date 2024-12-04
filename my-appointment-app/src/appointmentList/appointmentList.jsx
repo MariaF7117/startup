@@ -6,25 +6,16 @@ export const AppointmentList = () => {
   const [appointments, setAppointments] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch appointments from the backend
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const response = await fetch('/api/appointmentList');
-        if (response.ok) {
-          const data = await response.json();
-          setAppointments(data);
-        } else {
-          console.error('Failed to fetch appointments');
-        }
-      } catch (error) {
-        console.error('Error fetching appointments:', error);
-      }
-    };
 
-    fetchAppointments();
+  React.useEffect(() => {
+    fetch('/api/schedule')
+      .then((response) => response.json())
+      .then((schedule) => {
+        setAppointments(schedule);
+      });
   }, []);
 
+  
   // Cancel an appointment by index
   const cancelAppointment = async (index) => {
     try {
