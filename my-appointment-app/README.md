@@ -71,3 +71,4 @@ The React.js design for my webpage includes the following key features and compo
 The Service design for my webpage includes the following key features and components:
 - GET, POST, UPDATE, and DELETE calls used with await and fetch to the backend
 - Frontend making API calls to the backend server
+- About page includes API call to a public Server
