@@ -66,3 +66,8 @@ The React.js design for my webpage includes the following key features and compo
 - Authentication Components: Fully functional login and registration system to manage user access.  
 - Appointment Scheduling: Features for adding appointments with detailed fields such as description, name, date, and time.  
 - Appointment Management: Includes components for viewing, editing, and canceling appointments.  
+
+## Implementation of Service
+The Service design for my webpage includes the following key features and components:
+- GET, POST, UPDATE, and DELETE calls used with await and fetch to the backend
+- Frontend making API calls to the backend server
