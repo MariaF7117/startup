@@ -4,11 +4,6 @@ const express = require('express');
 const app = express();
 const DB = require('./database.js');
 
-// TheSchedule and users are saved in memory and disappear whenever the service is restarted.
-let users = {};
-let schedule = [];
-
-
 const authCookieName = 'token';
 
 // The service port may be set on the command line
@@ -29,7 +24,6 @@ app.set('trust proxy', true);
 // Router for service endpoints
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
-
 
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
@@ -60,7 +54,6 @@ apiRouter.post('/auth/login', async (req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
-
 // DeleteAuth token if stored in cookie
 apiRouter.delete('/auth/logout', (_req, res) => {
   res.clearCookie(authCookieName);
@@ -81,9 +74,41 @@ secureApiRouter.use(async (req, res, next) => {
   }
 });
 
-// register
-apiRouter.get('/register', (_req, res) => {
-  res.send(register);
+// GetScores
+secureApiRouter.get('/scores', async (req, res) => {
+  const scores = await DB.getHighScores();
+  res.send(scores);
+});
+
+// SubmitScore
+secureApiRouter.post('/score', async (req, res) => {
+  const score = { ...req.body, ip: req.ip };
+  await DB.addScore(score);
+  const scores = await DB.getHighScores();
+  res.send(scores);
+});
+
+// Default error handler
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
+
+// setAuthCookie in the HTTP response
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
+
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
 
 //schedule appointment
@@ -116,11 +141,6 @@ function updateSchedule(newSchedule,schedule){
 
 };
 
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
-
 apiRouter.get('/schedule', (_req,res) => {
     res.send(schedule)
 });
@@ -129,23 +149,5 @@ apiRouter.delete('/schedule/:indexId', (req,res) => {
   const indexId = req.params.indexId;
   schedule.splice(indexId,1);
   res.send(schedule)
-});
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
-
-// setAuthCookie in the HTTP response
-function setAuthCookie(res, authToken) {
-  res.cookie(authCookieName, authToken, {
-    secure: true,
-    httpOnly: true,
-    sameSite: 'strict',
-  });
-}
-
-const httpService = app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
 });
 

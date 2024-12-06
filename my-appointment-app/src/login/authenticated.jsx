@@ -1,7 +1,10 @@
 import React from 'react';
-import '../App.css';
-import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+
+import Button from 'react-bootstrap/Button';
+
+import '../App.css';
+
 export function Authenticated(props) {
   const navigate = useNavigate();
 
@@ -24,7 +27,7 @@ export function Authenticated(props) {
       <Button variant='primary' onClick={() => navigate('/play')}>
         Play
       </Button>
-      <Button variant="secondary" size="sm" onClick={() => logout()}>
+      <Button variant='secondary' onClick={() => logout()}>
         Logout
       </Button>
     </div>
