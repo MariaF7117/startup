@@ -13,7 +13,8 @@ export function Unauthenticated(props) {
   }
 
   async function createUser() {
-    loginOrCreate(`/api/auth/create`);
+
+    await loginOrCreate(`http://localhost:3000/api/auth/create`);
   }
 
   async function loginOrCreate(endpoint) {
