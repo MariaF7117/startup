@@ -51,7 +51,6 @@ const Home = () => {
       </nav>
       
       <Routes>
-        {/* <Route path="/" element={<Login />} /> */}
         <Route
             path='/'
             element={
