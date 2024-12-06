@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import { Button } from 'react-bootstrap';
 export function Authenticated(props) {
   const navigate = useNavigate();
 
