@@ -80,3 +80,11 @@ The Login design for my webpage includes the following key features and componen
 - Stores application data in MongoDB
 - Stores and retrieves credentials in MongoDB
 - Restricts application functionality based upon authentication
+
+## Implementation of Websocket
+The websocket demonstrates peer to peer communication using WebSocket.
+- Backend listens for WebSocket connection
+- Frontend makes WebSocket connection
+- Data sent over WebSocket connection
+- WebSocket data displayed in the application interface
+- All visible elements are working - Some of your application functionality has been mocked up in previous version of the startup. Your application should feel fully functional.
