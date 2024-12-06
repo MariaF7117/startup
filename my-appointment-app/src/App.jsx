@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { useState , useEffect} from 'react';
-import Login from './login/login.jsx'
+import Login from './login/login.jsx';
+import {AuthState} from './login/authState.js';
 import Schedule from './schedule/schedule.jsx';
 import Register from './register/register.jsx'
 import About from './about/about.jsx';
@@ -9,6 +10,9 @@ import AppointmentList from './appointmentList/appointmentList.jsx'
 import './App.css';
 
 const Home = () => {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
   const [appointments, setAppointments] = useState([]);
  // const navigate = useNavigate();
 
@@ -47,7 +51,21 @@ const Home = () => {
       </nav>
       
       <Routes>
-        <Route path="/" element={<Login />} />
+        {/* <Route path="/" element={<Login />} /> */}
+        <Route
+            path='/'
+            element={
+              <Login
+                userName={userName}
+                authState={authState}
+                onAuthChange={(userName, authState) => {
+                  setAuthState(authState);
+                  setUserName(userName);
+                }}
+              />
+            }
+            exact
+          />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/appointmentList" element={<AppointmentList />} />
         <Route path='/about' element={<About />} />

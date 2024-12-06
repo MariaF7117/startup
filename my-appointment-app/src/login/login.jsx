@@ -1,5 +1,3 @@
-
-import '../App.css';
 import React from 'react';
 
 import { Unauthenticated } from './unauthenticated';
@@ -8,11 +6,9 @@ import { AuthState } from './authState';
 
 export function Login({ userName, authState, onAuthChange }) {
   return (
-    <main>
+    <main className='container-fluid bg-secondary text-center'>
       <div>
-        {authState !== AuthState.Unknown && <h1>Welcome to Koi Orthodontics</h1>}
-
-
+        {authState !== AuthState.Unknown && <h1>Welcome to Simon</h1>}
         {authState === AuthState.Authenticated && (
           <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
         )}
@@ -28,5 +24,4 @@ export function Login({ userName, authState, onAuthChange }) {
     </main>
   );
 }
-
 export default Login;
