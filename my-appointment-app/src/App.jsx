@@ -43,11 +43,16 @@ const Home = () => {
     <BrowserRouter>
     <div>
       <nav>
-        <NavLink to="/">Login</NavLink> | 
-        <NavLink to="/schedule">Schedule Appointment</NavLink> | 
-        <NavLink to="/appointmentList">Appointments</NavLink> | 
-        <NavLink to="/about">About</NavLink> |
-        <NavLink to="/register">Register</NavLink>
+      
+        <NavLink to="/">Login</NavLink> |
+        {authState === AuthState.Authenticated && (
+        <NavLink to="/schedule">Schedule Appointment</NavLink>  )} |
+        {authState === AuthState.Authenticated && (
+        <NavLink to="/appointmentList">Appointments</NavLink> )} |
+        {authState === AuthState.Authenticated && (
+        <NavLink to="/about">About</NavLink>  )} |
+        {authState === AuthState.Authenticated && (
+        <NavLink to="/register">Register</NavLink> )} |
       </nav>
       
       <Routes>
