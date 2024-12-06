@@ -46,7 +46,7 @@ async function addSchedule(schedule) {
 
 function getSchedule() {
   const query = { schedule: { $gt: 0, $lt: 900 } };
-  const cursor = scoreCollection.find(query, options);
+  const cursor = scheduleCollection.find(query, options);
   return cursor.toArray();
 }
 
