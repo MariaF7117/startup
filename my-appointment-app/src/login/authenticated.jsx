@@ -24,7 +24,7 @@ export function Authenticated(props) {
       <Button variant='primary' onClick={() => navigate('/play')}>
         Play
       </Button>
-      <Button variant='secondary' onClick={() => logout()}>
+      <Button variant="secondary" size="sm" onClick={() => logout()}>
         Logout
       </Button>
     </div>
