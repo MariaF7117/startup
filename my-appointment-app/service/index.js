@@ -4,7 +4,8 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
-const { WebSocketServer } = require('ws');
+const { peerProxy } = require('./peerProxy.js');
+
 
 
 const authCookieName = 'token';
@@ -24,6 +25,9 @@ app.use(express.static('public'));
 // Trust headers that are forwarded from the proxy so we can determine IP addresses
 app.set('trust proxy', true);
 
+
+
+
 app.use(cors({
   origin: 'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -36,7 +40,6 @@ app.use(`/api`, apiRouter);
 
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
-  console.log("in create backend")
   if (await DB.getUser(req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
@@ -103,15 +106,13 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-const httpService = app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
 
 //schedule appointment
-apiRouter.post('/schedule', (req, res) => {
-  const newSchedule = req.body;
-  
-  schedule = updateSchedule(newSchedule, schedule);
+apiRouter.post('/schedule', async(req, res) => {
+  const schedule = await DB.addSchedule(schedule);
+  // const newSchedule = req.body;
+  schedule = await DB.getSchedule();
+  // schedule = updateSchedule(newSchedule, schedule);
   res.status(200).json({ message: 'Schedule updated successfully', schedule });
 });
 
@@ -137,8 +138,10 @@ function updateSchedule(newSchedule,schedule){
 
 };
 
-apiRouter.get('/schedule', (_req,res) => {
-    res.send(schedule)
+apiRouter.get('/schedule', async(_req,res) => {
+    
+    const schedule = await DB.getSchedule();
+    res.send(schedule);
 });
 
 apiRouter.delete('/schedule/:indexId', (req,res) => {
@@ -147,3 +150,8 @@ apiRouter.delete('/schedule/:indexId', (req,res) => {
   res.send(schedule)
 });
 
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
+peerProxy(httpService);
