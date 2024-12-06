@@ -49,7 +49,24 @@ export function About(props) {
           <p className='author'>{quoteAuthor}</p>
         </div>
       </div>
+      <div class="name">
+      <fieldset id="name-controls">
+        <legend>My Name</legend>
+        <input id="my-name" type="text" />
+      </fieldset>
+    </div>
+
+    <fieldset id="chat-controls" disabled>
+      <legend>Chat</legend>
+      <input id="new-msg" type="text" />
+      <button onclick="sendMessage()">Send</button>
+    </fieldset>
+    <div id="chat-text"></div>
+
     </main>
   );
+  
 }
+<script src="chatClient.js"></script>
+
 export default About;
