@@ -72,3 +72,11 @@ The Service design for my webpage includes the following key features and compon
 - GET, POST, UPDATE, and DELETE calls used with await and fetch to the backend
 - Frontend making API calls to the backend server
 - About page includes API call to a public Server
+
+## Implementation of Login
+The Login design for my webpage includes the following key features and components:
+- Supports new user registration
+- Supports existing user authentication and logout
+- Stores application data in MongoDB
+- Stores and retrieves credentials in MongoDB
+- Restricts application functionality based upon authentication
